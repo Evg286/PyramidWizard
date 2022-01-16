@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pyramid Wizard</title>
+    <style>
+
+        * {
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            box-sizing: border-box;
+        }
+
+        body{
+            background-color: antiquewhite;
+        }
+
+      
+        .container{
+            background-color: lightgoldenrodyellow;    
+            text-align: center;
+            border: 2px solid;
+            margin: 20px;
+        }
+        .container h2{
+            animation: shiftcolor 2s infinite;
+        }
+
+        .container p{
+            font-weight: bold;
+            animation: shiftsize 2s infinite;
+        }
+
+        .container span{
+            color: purple;
+        }
+
+
+        .btns{
+            padding: 5px;
+        }
+        button{
+            float: top;
+            width: 53px;
+            height: 53px;
+            border-radius: 50%;
+            border-color: black;
+            background-color: lightgreen;
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+            text-align: center;
+            padding: 2px;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+
+        #build{
+            margin-left: 10px;
+        }
+
+        #clear{
+            margin-right: 10px;
+        }
+
+        button:hover{
+            background-color: rgb(54, 97, 54);
+        }
+
+        img{
+            display: block;
+            resize: vertical no-repeat;
+            opacity: 0.8 !important;
+        }   
+
+        .pyramidbox{
+            background: url("https://media.istockphoto.com/vectors/beach-sand-background-top-view-vector-id1177095920?k=20&m=1177095920&s=612x612&w=0&h=cwMb4EHvy-bQwfDj_CjsSLVelmmsjVmopxSfcomMlts=") ;
+            position:relative;
+            display: flex;
+            min-height: 20rem;
+            border: 2px solid;
+            margin: 10px;
+        }
+
+        ul{
+            font-size: large;
+            list-style-type: none;
+            overflow: scroll;
+            margin: auto;
+            align-self: center;
+        }
+
+        ul::-webkit-scrollbar {
+            display: none;
+        }
+
+        
+        @keyframes shiftcolor {
+            0%{color: black;}
+            50%{color: red;}
+            100%{color: black;}
+        }
+
+        @keyframes shiftsize {
+            0%{font-size: 100%;}
+            50%{font-size: 103%;}
+            100%{font-size: 100%;}
+        }      
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <h1>The Pyramid Wizard</h1>
+        <h2>Sick of star pyramids?</h2>
+        <p>Choose your own brick! <span>(Smilyes are highly recommended)</span></p>
+        <br>
+        <div class="btns">
+            <button id="build" onclick="pymBuilder()">BUILD</button>
+            <button id="clear" onclick="refreshPage()">CLEAR</button>
+        </div>
+        <div class="pyramids">
+            <div class="pyramidbox">
+               <ul id="pyramidlist"><li></li></ul>
+            </div>
+            
+        </div>       
+    </div>   
+</body>
+
+    <script>
+        function pymBuilder() {
+            var brick = prompt("Enter brick type: ");
+            var rows = Number(prompt("Enter pyramid height: "));
+            for (i=1; i<=rows;i++) {
+                var newItem = document.createElement("LI");
+                var textnode = document.createTextNode(brick.repeat(i));
+                newItem.appendChild(textnode);        
+                var list = document.getElementById("pyramidlist");
+                list.insertBefore(newItem, list.childNodes[-1]);
+            }           
+        }
+        
+        function refreshPage() {
+            location.reload()
+        }
+
+    </script>
+</html>
