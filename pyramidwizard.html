@@ -112,11 +112,13 @@
 <body>
     <div class="container">
         <h1>The Pyramid Wizard</h1>
-        <h2>Sick of star pyramids?</h2>
-        <p>Choose your own brick! <span>(Smilyes are highly recommended)</span></p>
+        <h2>Tired of old star pyramids?</h2>
+        <p>Select your pyramid type! <span>(Symetric, Right-Sided, Left-Sided)</span></p>
+        <p>Select your own brick type! <span>(Smilyes are highly recommended)</span></p>
+        <p>Select your pyramid height! <span>(Any height works)</span></p>
         <br>
         <div class="btns">
-            <button id="build" onclick="pymBuilder()">BUILD</button>
+            <button id="build" onclick="chooseStyle()">BUILD</button>
             <button id="clear" onclick="refreshPage()">CLEAR</button>
         </div>
         <div class="pyramids">
@@ -129,7 +131,27 @@
 </body>
 
     <script>
-        function pymBuilder() {
+
+        function chooseStyle(){
+            
+            var selection = prompt("What pyramid would you like to build? 1-Even sided, 2-right leaning")
+            if(selection ==1){   
+                evenPyramid()
+            }
+            else if(selection ==2){
+                rightPyramid()
+               
+            } else if(selection == 3){
+                leftPyramid()
+            }
+            else{
+                alert("Please choose a valid pyramid style")
+            }
+        }
+
+
+        function evenPyramid() {
+            
             var brick = prompt("Enter brick type: ");
             var rows = Number(prompt("Enter pyramid height: "));
             for (i=1; i<=rows;i++) {
@@ -139,6 +161,33 @@
                 var list = document.getElementById("pyramidlist");
                 list.insertBefore(newItem, list.childNodes[-1]);
             }           
+        }
+
+        function rightPyramid() {
+            
+            var brick = prompt("Enter brick type: ");
+            var rows = Number(prompt("Enter pyramid height: "));
+            for (i=1; i<=rows;i++) {
+                var newItem = document.createElement("LI");
+                var textnode = document.createTextNode(brick.repeat(i));
+                newItem.appendChild(textnode);        
+                var list = document.getElementById("pyramidlist");
+                list.style.textAlign = "right";
+                list.insertBefore(newItem, list.childNodes[-1]);   
+            }  
+        }
+
+        function leftPyramid() {
+            var brick = prompt("Enter brick type: ");
+            var rows = Number(prompt("Enter pyramid height: "));
+            for (i=1; i<=rows;i++) {
+                var newItem = document.createElement("LI");
+                var textnode = document.createTextNode(brick.repeat(i));
+                newItem.appendChild(textnode);        
+                var list = document.getElementById("pyramidlist");
+                list.style.textAlign = "left";
+                list.insertBefore(newItem, list.childNodes[-1]);   
+            }  
         }
         
         function refreshPage() {
